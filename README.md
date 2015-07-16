@@ -1,5 +1,7 @@
 # Tota11y by Khan Academy
 
+<img src="http://khan.github.io/tota11y/img/tota11y-logo.png" alt="tota11y logo" width="200">
+
 ## Credits
 
 tota11y is an accessibility visualization toolkit from your friends at [Khan Academy](http://khanacademy.org/).
