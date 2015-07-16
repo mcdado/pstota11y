@@ -29,7 +29,7 @@ class Tota11yPS extends Module
      */
     public function install()
     {
-        Configuration::updateValue('TOTA11Y_ENABLE', false);
+        Configuration::updateValue('TOTA11Y_ENABLE', true);
 
         return parent::install() &&
             $this->registerHook('header');
