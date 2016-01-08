@@ -44,13 +44,15 @@ class Tota11yPS extends Module
 
     public function getContent()
     {
+        $output = '';
+
         if (((bool)Tools::isSubmit('submitTota11yModule')) == true) {
-            $this->postProcess();
+            $output .= $this->postProcess();
         }
 
         $this->context->smarty->assign('module_dir', $this->_path);
 
-        $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
+        $output .= $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
 
         return $output.$this->renderForm();
     }
@@ -130,6 +132,8 @@ class Tota11yPS extends Module
         foreach (array_keys($form_values) as $key) {
             Configuration::updateValue($key, Tools::getValue($key));
         }
+
+        return $this->displayConfirmation($this->l('Settings updated.'));
     }
 
     public function hookHeader()
