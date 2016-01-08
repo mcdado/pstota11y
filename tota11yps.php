@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -20,7 +21,7 @@ class Tota11yPS extends Module
         parent::__construct();
 
         $this->displayName = $this->l('Tota11y by Khan Academy');
-        $this->description = $this->l('An accessibility visualization toolkit from your friends at Khan Academy. // This module is not affiliated with Khan Academy');
+        $this->description = $this->l('An accessibility visualization toolkit from your friends at Khan Academy.');
     }
 
     /**
@@ -46,7 +47,7 @@ class Tota11yPS extends Module
     {
         $output = '';
 
-        if (((bool)Tools::isSubmit('submitTota11yModule')) == true) {
+        if (((bool) Tools::isSubmit('submitTota11yModule')) == true) {
             $output .= $this->postProcess();
         }
 
@@ -101,13 +102,13 @@ class Tota11yPS extends Module
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->l('Enabled'),
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
-                            )
+                                'label' => $this->l('Disabled'),
+                            ),
                         ),
                     ),
                 ),
