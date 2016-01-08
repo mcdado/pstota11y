@@ -15,6 +15,7 @@ class Tota11yPS extends Module
         $this->version = '0.0.6';
         $this->author = 'David Gasperoni';
         $this->need_instance = 0;
+        $this->embedded_version = 'v0.1.3';
 
         $this->bootstrap = true;
 
@@ -31,6 +32,7 @@ class Tota11yPS extends Module
     public function install()
     {
         Configuration::updateValue('TOTA11Y_ENABLE', true);
+        Configuration::updateValue('TOTA11Y_OUTSOURCE', false);
 
         return parent::install() &&
             $this->registerHook('header');
@@ -39,6 +41,7 @@ class Tota11yPS extends Module
     public function uninstall()
     {
         Configuration::deleteByName('TOTA11Y_ENABLE');
+        Configuration::deleteByName('TOTA11Y_OUTSOURCE');
 
         return parent::uninstall();
     }
@@ -115,6 +118,25 @@ class Tota11yPS extends Module
                             ),
                         ),
                     ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('Link to tota11y/master on GitHub'),
+                        'name' => 'TOTA11Y_OUTSOURCE',
+                        'is_bool' => true,
+                        'desc' => sprintf($this->l('Link directly to latest version on GitHub instead of embedded tota11y.js (current embedded version: %s)'), $this->embedded_version),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled'),
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled'),
+                            ),
+                        ),
+                    ),
                 ),
                 'submit' => array(
                     'title' => $this->l('Save'),
@@ -127,6 +149,7 @@ class Tota11yPS extends Module
     {
         return array(
             'TOTA11Y_ENABLE' => Configuration::get('TOTA11Y_ENABLE'),
+            'TOTA11Y_OUTSOURCE' => Configuration::get('TOTA11Y_OUTSOURCE'),
         );
     }
 
@@ -144,7 +167,11 @@ class Tota11yPS extends Module
     public function hookHeader()
     {
         if (Configuration::get('TOTA11Y_ENABLE')) {
-            $this->context->controller->addJS($this->_path.'/views/js/tota11y.min.js');
+            if (Configuration::get('TOTA11Y_OUTSOURCE')) {
+                $this->context->controller->addJS('https://raw.githubusercontent.com/Khan/tota11y/master/build/tota11y.min.js');
+            } else {
+                $this->context->controller->addJS($this->_path.'/views/js/tota11y.min.js');
+            }
         }
     }
 }
