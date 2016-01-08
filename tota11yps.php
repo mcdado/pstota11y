@@ -51,7 +51,11 @@ class Tota11yPS extends Module
             $output .= $this->postProcess();
         }
 
-        $this->context->smarty->assign('module_dir', $this->_path);
+        $this->context->smarty->assign(array(
+            'module_dir' => $this->_path,
+            'module_name' => $this->displayName,
+            'module_description' => $this->description,
+        ));
 
         $output .= $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
 
