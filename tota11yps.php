@@ -168,7 +168,7 @@ class Tota11yPS extends Module
     {
         if (Configuration::get('TOTA11Y_ENABLE')) {
             if (Configuration::get('TOTA11Y_OUTSOURCE')) {
-                $this->context->controller->addJS('https://raw.githubusercontent.com/Khan/tota11y/master/build/tota11y.min.js');
+                $this->context->controller->addJS('https://rawgit.com/Khan/tota11y/master/build/tota11y.min.js');
             } else {
                 $this->context->controller->addJS($this->_path.'/views/js/tota11y.min.js');
             }
