@@ -15,7 +15,7 @@ class Tota11yPS extends Module
         $this->version = '0.1.1';
         $this->author = 'David Gasperoni';
         $this->need_instance = 0;
-        $this->embedded_version = 'v0.1.3';
+        $this->embedded_version = 'v0.1.4';
 
         $this->bootstrap = true;
 
