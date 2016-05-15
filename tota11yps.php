@@ -167,6 +167,7 @@ class Tota11yPS extends Module
     public function hookHeader()
     {
         if (Configuration::get('TOTA11Y_ENABLE')) {
+            $this->context->controller->addJS($this->_path.'/views/js/tota11yps-front.js');
             if (Configuration::get('TOTA11Y_OUTSOURCE')) {
                 $this->context->controller->addJS('https://rawgit.com/Khan/tota11y/master/build/tota11y.min.js');
             } else {
