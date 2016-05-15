@@ -12,7 +12,7 @@ class Tota11yPS extends Module
     {
         $this->name = 'tota11yps';
         $this->tab = 'others';
-        $this->version = '0.1.1';
+        $this->version = '0.1.2';
         $this->author = 'David Gasperoni';
         $this->need_instance = 0;
         $this->embedded_version = 'v0.1.4';
